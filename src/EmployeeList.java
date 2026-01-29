@@ -2,10 +2,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeList {
-    private final List<Employee> employeeList;
+    private List<Employee> employeeList;
 
     public EmployeeList() {
         this.employeeList = new ArrayList<>();
+    }
+
+    public List<Employee> getEmployeeList() {
+        return employeeList;
     }
 
     public void addEmployee(Employee employee){
@@ -23,5 +27,17 @@ public class EmployeeList {
         }
 
         return employeeById;
+    }
+
+    public boolean hasId(EmployeeList employeeList, int id) {
+        Employee employeeById = null;
+        if(!this.employeeList.isEmpty()) {
+            for (Employee employee : this.employeeList) {
+                if (employee.getId().equals(id)) {
+                    employeeById = employee;
+                }
+            }
+        }
+        return employeeById != null;
     }
 }

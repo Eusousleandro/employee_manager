@@ -8,7 +8,7 @@ public class Main {
 
         EmployeeList employeeList = new EmployeeList();
 
-        System.out.print("How many employees will be registered?");
+        System.out.print("How many employees will be registered? ");
         int number = scanner.nextInt();
 
         for (int i = 0; i < number; i++){
@@ -16,6 +16,10 @@ public class Main {
             System.out.println("Employee # :" + (i + 1));
             System.out.print("Id: ");
             int id = scanner.nextInt();
+            while (employeeList.hasId(employeeList, id)) {
+                System.out.println("Invalid employee ID");
+                id = scanner.nextInt();
+            }
             scanner.nextLine();
             System.out.print("Name: ");
             String name = scanner.nextLine();
@@ -23,6 +27,7 @@ public class Main {
             Double salary = scanner.nextDouble();
 
             employeeList.addEmployee(new Employee(id, name, salary));
+
         }
 
         System.out.println();
@@ -35,6 +40,12 @@ public class Main {
             System.out.println("Emter the percentage: ");
             double percent = scanner.nextDouble();
             pos.incrementSalary(percent);
+        }
+
+        System.out.println();
+        System.out.println("List fo Employees:");
+        for (Employee emp: employeeList.getEmployeeList()) {
+            System.out.println(emp);
         }
         scanner.close();
     }
